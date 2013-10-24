@@ -1,0 +1,6 @@
+<% include header %>
+  <% users.forEach(function(user){ %>
+    <a href="/user/<%= user.id %>"><img src="<%= user.image %>"/></a>
+  <% }) %>
+  <a href="/new"><img src="http://placehold.it/64x64&text=NEW"/></a>
+<% include footer %>
