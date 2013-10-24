@@ -1,16 +1,16 @@
 var request = require('request');
 
-var User = {
+var Stock = {
   get: function(id, callback) {
-    var url = '/user/' + id; 
+    var url = '/stock/' + id;
 
     if(typeof id === 'function') {
       callback = id;
-      url = '/users';
+      url = '/stocks';
     }
 
     request({
-      url: process.config.api + url, 
+      url: process.config.api + url,
       json: true
     }, function (err, response, body) {
       if(err) {
@@ -31,8 +31,8 @@ var User = {
 
   create: function(data, callback) {
     request({
-      url: process.config.api + '/user',
-      method: 'POST', 
+      url: process.config.api + '/stock',
+      method: 'POST',
       json: true,
       body: data
     }, function (err, response, body) {
@@ -53,4 +53,4 @@ var User = {
   }
 };
 
-module.exports = User;
+module.exports = Stock;
