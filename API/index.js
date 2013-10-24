@@ -16,7 +16,7 @@ db.once('open', function() {
 });
 
 //Connect to the database
-mongoose.connect('mongodb://read:only@mongo.onmodulus.net:27017/iGi9gavy');
+mongoose.connect('mongodb://write:n0d3@mongo.onmodulus.net:27017/iGi9gavy');
 
 app.get('/stocks', function(req, res) {
   Stock.getAll(function(err, dudes) {
