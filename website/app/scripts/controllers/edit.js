@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('goingstockApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('EditCtrl', function ($scope) {
   	$scope.test = 'test';
 
 
