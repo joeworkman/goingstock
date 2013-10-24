@@ -10,8 +10,7 @@
   "author": "Team Node",
   "dependencies": {
     "mongoose": "~3.6.20",
-    "express": "~3.4.3",
-    "highcharts-client": "~0.1.1"
+    "express": "~3.4.3"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
