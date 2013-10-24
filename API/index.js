@@ -52,4 +52,4 @@ app.delete('/stock/:id', function(req, res) {
 //Start the server
 var port = process.env.PORT || 8675;
 app.listen(port);
-console.log('Server running on port ' + port);
+console.log('API running on port ' + port);
