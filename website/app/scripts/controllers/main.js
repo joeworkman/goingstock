@@ -2,9 +2,8 @@
 
 angular.module('goingstockApp')
 	.controller('MainCtrl', function($scope) {
-		$scope.test = 'test';
 
-		$scope.awesomeThings = [
+		$scope.stocks = [
 			'HTML5 Boilerplate',
 			'AngularJS',
 			'Karma'
