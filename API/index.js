@@ -34,7 +34,7 @@ app.get('/stock/:id', function(req, res) {
 
 app.post('/stock', function(req, res) {
   if (!req.body.symbol)  return res.send({error: 'Stocks require a stock symbol.'});
-  if (!req.body.company) return res.send({error: 'Stocks require a company.'});
+  if (!req.body.companyName) return res.send({error: 'Stocks require a company name.'});
 
   Stock.create(req.body, function(err, dude) {
     if (err) res.send({error: err.message});
