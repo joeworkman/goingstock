@@ -57,4 +57,6 @@ app.post('/stock', function(req, res) {
 });
 
 //Start the app
-app.listen(2013);
+var port = process.env.PORT || 2013;
+app.listen(port);
+console.log('front end site running on port ' + port);
