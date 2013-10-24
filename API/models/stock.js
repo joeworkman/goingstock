@@ -5,7 +5,7 @@ var Stock = {
       symbol: {type: String, required: true, unique: true},
       companyName: {type: String, required: true, unique: true},
       companyLogoUrl: {type: String, default: 'http://placehold.it/64x64'},
-      prices: [Schema.Types.Mixed]
+      prices: {date: Date, price: Number}
     }));
 
     return this;
