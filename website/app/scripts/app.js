@@ -11,6 +11,14 @@ angular.module('goingstockApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/stock', {
+        templateUrl: 'views/stock.html',
+        controller: 'StockCtrl'
+      })
+      .when('/edit', {
+        templateUrl: 'views/edit.html',
+        controller: 'EditCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
