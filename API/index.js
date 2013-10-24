@@ -1,3 +1,6 @@
+var csv = require('csv');
+var request = require("request");
+var moment = require("moment");
 var express = require('express'),
     app = express(),
     mongoose = require('mongoose'),
@@ -25,25 +28,49 @@ app.get('/stocks', function(req, res) {
   });
 });
 
-app.get('/stock/:id', function(req, res) {
-  Stock.get(req.params.id, function(err, dude) {
+app.get('/stock/:symbol', function(req, res) {
+  Stock.get(req.params.symbol, function(err, dude) {
     if (err) res.send({error: err.message});
     res.send(dude);
   });
 });
 
 app.post('/stock', function(req, res) {
-  if (!req.body.symbol)  return res.send({error: 'Stocks require a stock symbol.'});
-  if (!req.body.companyName) return res.send({error: 'Stocks require a company name.'});
+	if (!req.body.symbol)  return res.send({error: 'Stocks require a stock symbol.'});
+	if (!req.body.companyName) return res.send({error: 'Stocks require a company name.'});
 
-  Stock.create(req.body, function(err, dude) {
-    if (err) res.send({error: err.message});
-    res.send(dude);
-  });
+	yahooUrl = "http://ichart.yahoo.com/table.csv?a=0&b=1&c=2013&d=10&e=31&f=2013&g=w&ignore=.csv&s="+req.body.symbol;
+
+	req.body.prices = [];
+
+	request(yahooUrl, function(error, response, body) {
+		csv().from.string(body,{comment:'#'}).to.array(function(data){
+			for (var i = data.length - 1; i > 0; i--) {
+				req.body.prices.push({
+					'date'   : moment(data[i][0]).format(),
+					'open'   : data[i][1],
+					'high'   : data[i][2],
+					'low'    : data[i][3],
+					'close'  : data[i][4],
+					'volume' : data[i][5]
+				});
+			};
+			//console.log(prices);
+
+			console.log(req.body);
+
+			Stock.create(req.body, function(err, dude) {
+			  if (err) res.send({error: err.message});
+			  res.send(dude);
+			});
+		});
+	});
+
+
 });
 
-app.delete('/stock/:id', function(req, res) {
-  Stock.delete(req.params.id, function(err) {
+app.delete('/stock/:symbol', function(req, res) {
+  Stock.delete(req.params.symbol, function(err) {
     if (err) res.send({error: err.message});
     res.send({});
   });
