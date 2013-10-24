@@ -2,7 +2,7 @@
   "name": "goingstock",
   "version": "0.0.0",
   "description": "Stock ticker for Going Node class",
-  "main": "app/index.html",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/joeworkman/goingstock"
