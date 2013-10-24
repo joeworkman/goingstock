@@ -23,13 +23,13 @@ var Stock = {
 
   get: function(symbol, callback) {
     //findOne will return a single object, or null if nothing was found
-    this.model.findOne({symbol: symbol}, {__v: 0, _symbol: 0}, callback);
+    this.model.findOne({symbol: symbol}, {__v: 0, _id: 0}, callback);
   },
 
   getAll: function(callback) {
     //find will return an array of users. Without a query for the first
     //param, it will return all users    
-    this.model.find({}, {__v: 0, _symbol: 0}, callback);
+    this.model.find({}, {__v: 0, _id: 0}, callback);
   },
 
   delete: function(symbol, callback) {
