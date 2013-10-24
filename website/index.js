@@ -1,5 +1,5 @@
 process.config = {
-  api: 'http://localhost:8675'
+  api: 'http://goingstock-9565.onmodulus.net/'
 };
 
 var express = require('express'),
