@@ -6,7 +6,7 @@ var express = require('express'),
     app = express(),
 
     //Load the controllers
-    User = require('./controllers/user');
+    stock = require('./controllers/stock');
 
 //Allows the serving of static files from the public directory
 app.use(express.static(__dirname + '/public'));
@@ -16,24 +16,24 @@ app.use(express.bodyParser());
 app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
-  User.get(function(err, users) {
+  stock.get(function(err, stocks) {
     if(err) {
       console.log(err);
-      return res.render('index', {users: []});
+      return res.render('index', {stocks: []});
     }
 
-    res.render('index', {users: users});
+    res.render('index', {stocks: stocks});
   });
 });
 
-app.get('/user/:id', function(req, res) {
-  User.get(req.params.id, function(err, user) {
+app.get('/stock/:id', function(req, res) {
+  stock.get(req.params.id, function(err, stock) {
     if(err) {
       console.log(err);
-      return res.render('user', {});
+      return res.render('stock', {});
     }
 
-    res.render('user', user);
+    res.render('stock', stock);
   });
 });
 
@@ -42,17 +42,17 @@ app.get('/new', function(req, res) {
 });
 
 //Save a movie, set it to the latest
-app.post('/user', function(req, res) {
-  User.create(req.body, function(err, user) {
+app.post('/stock', function(req, res) {
+  stock.create(req.body, function(err, stock) {
     if(err) {
       return res.send(err);
     }
 
     //sanatize the data
-    delete user._id;
-    delete user.__v;
+    delete stock._id;
+    delete stock.__v;
 
-    res.send(user);
+    res.send(stock);
   });
 });
 
