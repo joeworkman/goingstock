@@ -50,4 +50,6 @@ app.delete('/stock/:id', function(req, res) {
 });
 
 //Start the server
-app.listen(8675); //309
+var port = process.env.PORT || 8675;
+app.listen(port);
+console.log('Server running on port ' + port);
